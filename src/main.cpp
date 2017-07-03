@@ -55,12 +55,21 @@ void check_files(ifstream& in_file, string& in_name,
 
 int main(int argc, char* argv[]) {
 
-	check_arguments(argc, argv);
+	string in_file_name_, out_file_name_;
 
-	string in_file_name_ = argv[1];
+	if (argc > 1)
+	{
+		check_arguments(argc, argv);
+		in_file_name_ = argv[1];
+		out_file_name_ = argv[2];
+	}
+	else
+	{
+		in_file_name_ = "../data/obj_pose-laser-radar-synthetic-input.txt";
+		out_file_name_ = "../data/output.txt";
+	}
+
 	ifstream in_file_(in_file_name_.c_str(), ifstream::in);
-
-	string out_file_name_ = argv[2];
 	ofstream out_file_(out_file_name_.c_str(), ofstream::out);
 
 	check_files(in_file_, in_file_name_, out_file_, out_file_name_);
